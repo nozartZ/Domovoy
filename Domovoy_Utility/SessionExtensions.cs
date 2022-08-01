@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-namespace Domovoy.Utility
+namespace Domovoy_Utility
 {
     public static class SessionExtensions
     {

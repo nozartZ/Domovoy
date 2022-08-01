@@ -1,4 +1,4 @@
-﻿namespace Domovoy
+﻿namespace Domovoy_Utility
 {
     public static class WC
     {

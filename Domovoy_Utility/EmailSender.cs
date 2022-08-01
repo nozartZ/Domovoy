@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
 
-namespace Domovoy.Utility
+namespace Domovoy_Utility
 {
     public class EmailSender : IEmailSender
     {

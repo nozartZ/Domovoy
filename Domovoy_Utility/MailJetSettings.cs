@@ -1,4 +1,4 @@
-﻿namespace Domovoy.Utility
+﻿namespace Domovoy_Utility
 {
     public class MailJetSettings
     {
