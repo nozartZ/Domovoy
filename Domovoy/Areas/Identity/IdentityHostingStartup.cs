@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Domovoy.Data;
+using Domovoy_DataAccess;
 
 [assembly: HostingStartup(typeof(Domovoy.Areas.Identity.IdentityHostingStartup))]
 namespace Domovoy.Areas.Identity

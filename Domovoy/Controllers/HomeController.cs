@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Domovoy.Data;
+using Domovoy_DataAccess;
 using Domovoy_Models;
 using Domovoy_Models.ViewModels;
 using Domovoy_Utility;

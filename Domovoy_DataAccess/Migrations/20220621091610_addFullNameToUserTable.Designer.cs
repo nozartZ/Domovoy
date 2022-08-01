@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Domovoy.Data;
+using Domovoy_DataAccess;
 
-namespace Domovoy.Migrations
+namespace Domovoy_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220621091610_addFullNameToUserTable")]

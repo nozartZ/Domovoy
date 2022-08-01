@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Domovoy_Models;
 
-namespace Domovoy.Data
+namespace Domovoy_DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext
     {

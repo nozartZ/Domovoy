@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Domovoy.Data;
+using Domovoy_DataAccess;
 using Domovoy_Utility;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Domovoy.Migrations
+namespace Domovoy_DataAccess.Migrations
 {
     public partial class addProductToDatabase : Migration
     {

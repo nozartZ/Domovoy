@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Domovoy.Data;
+using Domovoy_DataAccess;
 
-namespace Domovoy.Migrations
+namespace Domovoy_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220526180911_addAppTypeToProduct1")]
-    partial class addAppTypeToProduct1
+    [Migration("20220526173755_addAppTypeToProduct")]
+    partial class addAppTypeToProduct
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

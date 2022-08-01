@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Domovoy.Data;
+using Domovoy_DataAccess;
 using Domovoy_Models;
 using Domovoy_Models.ViewModels;
 using System;
