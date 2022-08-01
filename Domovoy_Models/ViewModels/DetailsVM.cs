@@ -1,4 +1,4 @@
-﻿namespace Domovoy.Models.ViewModels
+﻿namespace Domovoy_Models.ViewModels
 {
     public class DetailsVM
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Domovoy.Models.ViewModels
+namespace Domovoy_Models.ViewModels
 {
     public class HomeVM
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domovoy.Models
+namespace Domovoy_Models
 {
     public class Product
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domovoy.Models
+namespace Domovoy_Models
 {
     public class Category
     {   [Key]

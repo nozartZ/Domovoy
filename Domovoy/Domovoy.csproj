@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domovoy_Models\Domovoy_Models.csproj" />
     <ProjectReference Include="..\Domovoy_Utility\Domovoy_Utility.csproj" />
   </ItemGroup>
 

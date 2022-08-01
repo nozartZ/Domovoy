@@ -221,7 +221,7 @@ namespace Domovoy.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Domovoy.Models.ApplicationType", b =>
+            modelBuilder.Entity("Domovoy_Models.ApplicationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -237,7 +237,7 @@ namespace Domovoy.Migrations
                     b.ToTable("ApplicationType");
                 });
 
-            modelBuilder.Entity("Domovoy.Models.Category", b =>
+            modelBuilder.Entity("Domovoy_Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,7 +256,7 @@ namespace Domovoy.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Domovoy.Models.Product", b =>
+            modelBuilder.Entity("Domovoy_Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -345,15 +345,15 @@ namespace Domovoy.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domovoy.Models.Product", b =>
+            modelBuilder.Entity("Domovoy_Models.Product", b =>
                 {
-                    b.HasOne("Domovoy.Models.ApplicationType", "ApplicationType")
+                    b.HasOne("Domovoy_Models.ApplicationType", "ApplicationType")
                         .WithMany()
                         .HasForeignKey("ApplicationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domovoy.Models.Category", "Category")
+                    b.HasOne("Domovoy_Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Domovoy.Data;
-using Domovoy.Models;
+using Domovoy_Models;
 using System.Collections.Generic;
 using Domovoy_Utility;
 

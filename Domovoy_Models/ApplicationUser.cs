@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Domovoy.Models
+namespace Domovoy_Models
 {
     public class ApplicationUser : IdentityUser
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domovoy.Models
+namespace Domovoy_Models
 {
     public class ApplicationType
     {

@@ -20,7 +20,7 @@ namespace Domovoy.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Domovoy.Models.ApplicationType", b =>
+            modelBuilder.Entity("Domovoy_Models.ApplicationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,7 +36,7 @@ namespace Domovoy.Migrations
                     b.ToTable("ApplicationType");
                 });
 
-            modelBuilder.Entity("Domovoy.Models.Category", b =>
+            modelBuilder.Entity("Domovoy_Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +55,7 @@ namespace Domovoy.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Domovoy.Models.Product", b =>
+            modelBuilder.Entity("Domovoy_Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,9 +85,9 @@ namespace Domovoy.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("Domovoy.Models.Product", b =>
+            modelBuilder.Entity("Domovoy_Models.Product", b =>
                 {
-                    b.HasOne("Domovoy.Models.Category", "Category")
+                    b.HasOne("Domovoy_Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
