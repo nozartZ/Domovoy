@@ -4,22 +4,23 @@ using Domovoy_DataAccess;
 using Domovoy_Models;
 using System.Collections.Generic;
 using Domovoy_Utility;
+using Domovoy_DataAccess.Repository.IRepository;
 
 namespace Domovoy.Controllers
 {
     [Authorize(Roles = WC.AdminRole)]
     public class ApplicationTypeController : Controller
     {
-        
-        private readonly ApplicationDbContext _db;
 
-        public ApplicationTypeController(ApplicationDbContext db)
+        private readonly IApplicationTypeRepository _appTypeRepo;
+
+        public ApplicationTypeController(IApplicationTypeRepository appTypeRepo)
             {
-                _db = db;
+                _appTypeRepo = appTypeRepo;
             }
         public IActionResult Index()
             {
-                IEnumerable<ApplicationType> objList = _db.ApplicationType;
+                IEnumerable<ApplicationType> objList = _appTypeRepo.GetAll();
                 return View(objList);
             }
 
@@ -36,8 +37,8 @@ namespace Domovoy.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.ApplicationType.Add(obj);
-                _db.SaveChanges();
+                _appTypeRepo.Add(obj);
+                _appTypeRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -50,7 +51,7 @@ namespace Domovoy.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _appTypeRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
@@ -64,8 +65,8 @@ namespace Domovoy.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.ApplicationType.Update(obj);
-                _db.SaveChanges();
+                _appTypeRepo.Update(obj);
+                _appTypeRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -78,7 +79,7 @@ namespace Domovoy.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _appTypeRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
@@ -91,14 +92,14 @@ namespace Domovoy.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _appTypeRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.ApplicationType.Remove(obj);
-            _db.SaveChanges();
+            _appTypeRepo.Remove(obj);
+            _appTypeRepo.Save();
             return RedirectToAction("Index");
         }
     }

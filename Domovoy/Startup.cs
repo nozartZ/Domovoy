@@ -46,6 +46,8 @@ namespace Domovoy
 
             });
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
+
             services.AddControllersWithViews();
         }
 
