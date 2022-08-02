@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domovoy_DataAccess.Repository.IRepository;
+using Domovoy_DataAccess.Repository;
 
 namespace Domovoy
 {
@@ -43,6 +45,7 @@ namespace Domovoy
                 Options.Cookie.IsEssential = true;
 
             });
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();
         }
 
