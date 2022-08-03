@@ -30,7 +30,7 @@ namespace Domovoy_DataAccess.Repository
             }
             if (obj == WC.ApplicationTypeName)
             {
-                _db.ApplicationType.Select(i => new SelectListItem
+                return _db.ApplicationType.Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
