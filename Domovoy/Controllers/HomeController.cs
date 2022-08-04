@@ -11,26 +11,29 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Domovoy_DataAccess.Repository.IRepository;
 
 namespace Domovoy.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _db;
+        private readonly IProductRepository _prodRepo;
+        private readonly ICategoryRepository _catRepo;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger, ICategoryRepository catRepo, IProductRepository prodRepo)
         {
             _logger = logger;
-            _db = db;
+            _catRepo = catRepo;
+            _prodRepo= prodRepo;
         }
 
         public IActionResult Index()
         {
             HomeVM homeVM = new HomeVM()
             {
-                Products = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType),
-                Categories = _db.Category
+                Products = _prodRepo.GetAll(includeProperties:"Category,ApplicationType"),
+                Categories = _catRepo.GetAll()
             };
             return View(homeVM);
         }
@@ -46,7 +49,7 @@ namespace Domovoy.Controllers
 
             DetailsVM DetailsVM = new DetailsVM()
             {
-                Product = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType).Where(u => u.Id == id).FirstOrDefault(),
+                Product = _prodRepo.FirstOrDefault(u => u.Id == id, includeProperties:"Category,ApplicationType"),
                 ExistsInCart = false,
             };
 
