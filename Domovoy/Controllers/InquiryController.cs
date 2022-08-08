@@ -40,6 +40,27 @@ namespace Domovoy.Controllers
             return View(InquiryVM);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details()
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            InquiryVM.inquiryDetail = _inqDRepo.GetAll(u => u.InquiryHeaderId == InquiryVM.inquiryHeader.Id);
+
+            foreach(var detail in InquiryVM.inquiryDetail)
+            {
+                ShoppingCart shoppingCart = new ShoppingCart()
+                {
+                    ProductId = detail.ProductId
+                };
+                shoppingCartList.Add(shoppingCart);
+            }
+            HttpContext.Session.Clear();
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            HttpContext.Session.Set(WC.SessionInquiryId, InquiryVM.inquiryHeader.Id);
+            return RedirectToAction("Index","Cart");
+        }
+
         #region API CALLS
         [HttpGet]
         public IActionResult GetInquiryList()
