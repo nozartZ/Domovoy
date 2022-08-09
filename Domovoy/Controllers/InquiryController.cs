@@ -9,7 +9,7 @@ using Domovoy_Models.ViewModels;
 
 namespace Domovoy.Controllers
 {
-    
+    [Authorize(Roles = WC.AdminRole)]
     public class InquiryController : Controller
     {
         private readonly IInquiryHeaderRepository _inqHRepo;
@@ -60,6 +60,19 @@ namespace Domovoy.Controllers
             HttpContext.Session.Set(WC.SessionInquiryId, InquiryVM.inquiryHeader.Id);
             return RedirectToAction("Index","Cart");
         }
+
+        [HttpPost]
+        public IActionResult Delete()
+        {
+            InquiryHeader inquiryHeader = _inqHRepo.FirstOrDefault(u => u.Id == InquiryVM.inquiryHeader.Id);
+            IEnumerable<InquiryDetail> inquiryDetails = _inqDRepo.GetAll(u => u.InquiryHeaderId == InquiryVM.inquiryHeader.Id);
+            _inqDRepo.RemoveRange(inquiryDetails);
+            _inqHRepo.Remove(inquiryHeader);
+            _inqHRepo.Save();
+            return RedirectToAction (nameof(Index));
+
+        }
+
 
         #region API CALLS
         [HttpGet]
