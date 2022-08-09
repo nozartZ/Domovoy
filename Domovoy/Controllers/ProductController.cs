@@ -93,6 +93,7 @@ namespace Domovoy.Controllers
                     }
                     productVM.Product.Image = fileName + extension;
                     _prodRepo.Add(productVM.Product);
+                    
 
                 }
                 else
@@ -121,8 +122,10 @@ namespace Domovoy.Controllers
                         productVM.Product.Image= objFromDb.Image;
                     }
                     _prodRepo.Update(productVM.Product);
+                    
                 }
                 _prodRepo.Save();
+                TempData[WC.Success] = "Действие выполнено успешно";
                 return RedirectToAction("Index");
             }
             productVM.CategorySelectList = _prodRepo.GetAllDropdownList(WC.CategoryName);
@@ -171,6 +174,7 @@ namespace Domovoy.Controllers
 
             _prodRepo.Remove(obj);
             _prodRepo.Save();
+            TempData[WC.Success] = "Действие выполнено успешно";
             return RedirectToAction("Index");
         }
     }

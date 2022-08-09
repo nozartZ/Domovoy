@@ -38,8 +38,10 @@ namespace Domovoy.Controllers
             {
                 _catRepo.Add(obj);
                 _catRepo.Save();
+                TempData[WC.Success] = "Категория успешно добавлена";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Ошибка при создании категории";
             return View(obj);
         }
 
@@ -66,8 +68,10 @@ namespace Domovoy.Controllers
             {
                 _catRepo.Update(obj);
                 _catRepo.Save();
+                TempData[WC.Success] = "Категория успешно обновлена";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Ошибка при обновлении категории";
             return View(obj);
         }
 
@@ -99,6 +103,7 @@ namespace Domovoy.Controllers
             
             _catRepo.Remove(obj);
             _catRepo.Save();
+            TempData[WC.Success] = "Категория успешно удалена";
             return RedirectToAction("Index");
         }
     }

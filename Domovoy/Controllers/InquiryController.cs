@@ -69,6 +69,7 @@ namespace Domovoy.Controllers
             _inqDRepo.RemoveRange(inquiryDetails);
             _inqHRepo.Remove(inquiryHeader);
             _inqHRepo.Save();
+            TempData[WC.Success] = "Действие выполнено успешно";
             return RedirectToAction (nameof(Index));
 
         }

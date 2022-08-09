@@ -39,8 +39,10 @@ namespace Domovoy.Controllers
             {
                 _appTypeRepo.Add(obj);
                 _appTypeRepo.Save();
+                TempData[WC.Success] = "Действие выполнено успешно";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Ошибка при выполнении действия";
             return View(obj);
         }
 
@@ -67,8 +69,10 @@ namespace Domovoy.Controllers
             {
                 _appTypeRepo.Update(obj);
                 _appTypeRepo.Save();
+                TempData[WC.Success] = "Действие выполнено успешно";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Ошибка при выполнении действия";
             return View(obj);
         }
 
@@ -100,6 +104,7 @@ namespace Domovoy.Controllers
 
             _appTypeRepo.Remove(obj);
             _appTypeRepo.Save();
+            TempData[WC.Success] = "Действие выполнено успешно";
             return RedirectToAction("Index");
         }
     }

@@ -74,6 +74,7 @@ namespace Domovoy.Controllers
             }
             shoppingCartList.Add(new ShoppingCart { ProductId = id });
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Товар успешно добавлен в корзину";
             return RedirectToAction(nameof(Index));
         }
 
@@ -94,6 +95,7 @@ namespace Domovoy.Controllers
             }
             
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Товар удален из корзины";
             return RedirectToAction(nameof(Index));
         }
 

@@ -148,6 +148,7 @@ namespace Domovoy.Controllers
                 _inqDRepo.Add(inquiryDetail);
             }
             _inqDRepo.Save();
+            TempData[WC.Success] = "Заказ успешно отправлен";
 
 
             return RedirectToAction(nameof(InqueryConfirmation));
@@ -173,7 +174,7 @@ namespace Domovoy.Controllers
 
             shoppingCartsList.Remove(shoppingCartsList.FirstOrDefault(u => u.ProductId == id));
             HttpContext.Session.Set(WC.SessionCart, shoppingCartsList);
-
+            TempData[WC.Success] = "Товар удален из корзины";
             return RedirectToAction(nameof(Index));
         }
     }
