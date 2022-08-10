@@ -5,6 +5,11 @@ namespace Domovoy_Models
 {
     public class Product
     {
+        public Product()
+        {
+            TempSqFt = 1;
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -23,6 +28,10 @@ namespace Domovoy_Models
         public int ApplicationTypeId { get; set; }
         [ForeignKey("ApplicationTypeId")]
         public virtual ApplicationType ApplicationType { get; set; }
+
+        [NotMapped]
+        [Range(1,10000)]
+        public int TempSqFt { get; set; }
 
     }
 }
