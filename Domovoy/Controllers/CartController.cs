@@ -128,8 +128,15 @@ namespace Domovoy.Controllers
             ProductUserVM = new ProductUserVM()
             {
                 ApplicationUser = applicationUser,
-                ProductList = prodList.ToList()
+                
             };
+
+            foreach (var cartObj in shoppingCartsList)
+            {
+                Product prodTemp = _prodRepo.FirstOrDefault(u => u.Id == cartObj.ProductId);
+                prodTemp.TempSqFt = cartObj.SqFt;
+                ProductUserVM.ProductList.Add(prodTemp);
+            }
 
             return View(ProductUserVM);
         }
