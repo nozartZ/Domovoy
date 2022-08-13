@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domovoy_DataAccess.Repository.IRepository;
 using Domovoy_DataAccess.Repository;
+using Domovoy_Utility.BrainTree;
 
 namespace Domovoy
 {
@@ -45,6 +46,8 @@ namespace Domovoy
                 Options.Cookie.IsEssential = true;
 
             });
+            services.Configure<BrainTreeSettings>(Configuration.GetSection("BrainTree"));
+            services.AddSingleton<IBrainTreeGate, BrainTreeGate>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
