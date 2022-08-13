@@ -251,11 +251,11 @@ namespace Domovoy.Controllers
             return RedirectToAction(nameof(InqueryConfirmation));
         }
 
-        public IActionResult InqueryConfirmation ()
+        public IActionResult InqueryConfirmation (int id=0)
         {
-
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u=>u.Id == id);
             HttpContext.Session.Clear();
-            return View();
+            return View(orderHeader);
         }
 
         public IActionResult Remove(int id)
