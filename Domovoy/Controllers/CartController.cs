@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domovoy_DataAccess.Repository.IRepository;
 using System;
+using Domovoy_Utility.BrainTree;
 
 namespace Domovoy.Controllers
 {
@@ -29,13 +30,14 @@ namespace Domovoy.Controllers
         private readonly IInquiryDetailRepository _inqDRepo;
         private readonly IOrderHeaderRepository _orderHRepo;
         private readonly IOrderDetailRepository _orderDRepo;
+        private readonly IBrainTreeGate _brain;
 
         [BindProperty]
         public ProductUserVM ProductUserVM { get; set; }
 
         public CartController(IProductRepository prodRepo, IApplicationUserRepository userRepo, IWebHostEnvironment webHostEnvironment, 
             IEmailSender emailSender, IInquiryHeaderRepository inqHRepo, IInquiryDetailRepository inqDRepo,
-            IOrderHeaderRepository orderHRepo, IOrderDetailRepository orderDRepo)
+            IOrderHeaderRepository orderHRepo, IOrderDetailRepository orderDRepo, IBrainTreeGate brain)
         {
             _prodRepo = prodRepo;
             _userRepo = userRepo;
@@ -45,6 +47,7 @@ namespace Domovoy.Controllers
             _inqDRepo= inqDRepo;
             _orderHRepo = orderHRepo;
             _orderDRepo = orderDRepo;
+            _brain = brain;
         }
 
         public IActionResult Index()
@@ -108,6 +111,10 @@ namespace Domovoy.Controllers
                 {
                     applicationUser = new ApplicationUser();
                 }
+
+                var gateway = _brain.GetGateway();
+                var clientToken = gateway.ClientToken.Generate();
+                ViewBag.ClientToken = clientToken;
             }
             else
             {
