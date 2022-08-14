@@ -323,5 +323,11 @@ namespace Domovoy.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Clear(int id)
+        {
+            HttpContext.Session.Clear();
+            TempData[WC.Success] = "Корзина очищена";
+            return RedirectToAction("Index","Home");
+        }
     }
 }
