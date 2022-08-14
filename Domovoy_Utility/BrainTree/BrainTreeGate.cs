@@ -19,7 +19,7 @@ namespace Domovoy_Utility.BrainTree
 
         public IBraintreeGateway CreateGateway()
         {
-            return new BraintreeGateway(_options.Environment, _options.MerchantId,_options.PrivateKey, _options.PublicKey);
+            return new BraintreeGateway(_options.Environment, _options.MerchantId, _options.PublicKey, _options.PrivateKey);
         }
 
         public IBraintreeGateway GetGateway()
