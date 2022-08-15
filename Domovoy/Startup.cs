@@ -57,6 +57,12 @@ namespace Domovoy
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
+            services.AddAuthentication().AddFacebook(Options =>
+            {
+                Options.AppId = "530153088882711";
+                Options.AppSecret = "f6fe3eb9d4ed64e29e2f01ee95299fba";
+            });
+
             services.AddControllersWithViews();
         }
 
