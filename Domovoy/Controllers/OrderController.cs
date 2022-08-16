@@ -1,9 +1,11 @@
 ﻿using Domovoy_DataAccess.Repository.IRepository;
 using Domovoy_Models.ViewModels;
+using Domovoy_Utility;
 using Domovoy_Utility.BrainTree;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Domovoy.Controllers
 {
@@ -25,7 +27,16 @@ namespace Domovoy.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            OrderListVM orderListVM = new OrderListVM()
+            {
+                OrderHList = _orderHRepo.GetAll(),
+                StatusList = WC.listStatus.ToList().Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+                {
+                    Text = i,
+                    Value = i
+                })
+            };
+            return View(orderListVM);
         }
     }
 }
