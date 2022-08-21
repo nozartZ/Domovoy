@@ -191,8 +191,9 @@
             var app_name = document.getElementById("ApplicationUser_FullName").value;
             var app_phone = document.getElementById("ApplicationUser_PhoneNumber").value;
             var app_email = document.getElementById("ApplicationUser_Email").value;
+            var app_city = document.getElementById("ApplicationUser_City").value;
 
-            if(app_name.ToString() == '') {
+            if(app_name.toString() == '') {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -200,7 +201,7 @@
                 })
                 return false;
             }
-            if(app_phone.ToString() == '') {
+            if(app_phone.toString() == '') {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -208,11 +209,19 @@
                 })
                 return false;
             }
-            if (app_email.ToString() == '') {
+            if (app_email.toString() == '') {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Пожалуйста введите Email!'
+                })
+                return false;
+            }
+            if (app_city.toString() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Пожалуйста введите город!'
                 })
                 return false;
             }
