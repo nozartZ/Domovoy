@@ -53,19 +53,21 @@ namespace Domovoy.Controllers
 
         public IActionResult Index()
         {
-            List<ShoppingCart> shoppingCartsList = new List<ShoppingCart>();
+
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
             if(HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart)!= null
                 && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Count() > 0)
             {
                 //session exists
-                shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
 
             }
-            List <int> prodInCart = shoppingCartsList.Select(i=>i.ProductId).ToList();
+
+            List <int> prodInCart = shoppingCartList.Select(i=>i.ProductId).ToList();
             IEnumerable<Product> prodListTemp = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
             IList<Product> prodList = new List<Product>();
 
-            foreach (var cartObj in shoppingCartsList)
+            foreach (var cartObj in shoppingCartList)
             {
                 Product prodTemp = prodListTemp.FirstOrDefault(u=>u.Id == cartObj.ProductId);
                 prodTemp.TempSqFt = cartObj.SqFt;
@@ -85,6 +87,7 @@ namespace Domovoy.Controllers
             {
                 shoppingCartList.Add(new ShoppingCart { ProductId = prod.Id, SqFt = prod.TempSqFt });
             }
+
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
 
             return RedirectToAction(nameof(Summary));
@@ -127,24 +130,22 @@ namespace Domovoy.Controllers
 
             
            
-            List<ShoppingCart> shoppingCartsList = new List<ShoppingCart>();
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
             if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
                 && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Count() > 0)
             {
                 //session exists
-                shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
-
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
             }
-            List<int> prodInCart = shoppingCartsList.Select(i => i.ProductId).ToList();
+            List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
             IEnumerable<Product> prodList = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
 
             ProductUserVM = new ProductUserVM()
             {
                 ApplicationUser = applicationUser,
-                
             };
 
-            foreach (var cartObj in shoppingCartsList)
+            foreach (var cartObj in shoppingCartList)
             {
                 Product prodTemp = _prodRepo.FirstOrDefault(u => u.Id == cartObj.ProductId);
                 prodTemp.TempSqFt = cartObj.SqFt;
@@ -227,8 +228,7 @@ namespace Domovoy.Controllers
                     orderHeader.OrderStatus = WC.StatusCancelled;
                 }
                 _orderHRepo.Save();
-
-                return RedirectToAction(nameof(InqueryConfirmation), new {id=orderHeader.Id});
+                return RedirectToAction(nameof(InquiryConfirmation), new {id=orderHeader.Id});
             }
             else
             {
@@ -283,10 +283,10 @@ namespace Domovoy.Controllers
                 TempData[WC.Success] = "Заказ успешно отправлен";
             }
 
-            return RedirectToAction(nameof(InqueryConfirmation));
+            return RedirectToAction(nameof(InquiryConfirmation));
         }
 
-        public IActionResult InqueryConfirmation (int id=0)
+        public IActionResult InquiryConfirmation (int id=0)
         {
             OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u=>u.Id == id);
             HttpContext.Session.Clear();
@@ -323,7 +323,7 @@ namespace Domovoy.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Clear(int id)
+        public IActionResult Clear()
         {
             HttpContext.Session.Clear();
             TempData[WC.Success] = "Корзина очищена";

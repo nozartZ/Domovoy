@@ -39,6 +39,7 @@ namespace Domovoy
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddDistributedMemoryCache();
             services.AddHttpContextAccessor();
             services.AddSession(Options =>{
                 Options.IdleTimeout = TimeSpan.FromMinutes(10);

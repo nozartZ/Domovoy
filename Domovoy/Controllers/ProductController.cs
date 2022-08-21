@@ -64,7 +64,7 @@ namespace Domovoy.Controllers
             else
             {
                 productVM.Product = _prodRepo.Find(id.GetValueOrDefault());
-                if (productVM == null)
+                if (productVM.Product == null)
                 {
                     return NotFound();
                 }
