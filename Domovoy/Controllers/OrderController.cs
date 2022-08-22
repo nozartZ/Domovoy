@@ -4,6 +4,7 @@ using Domovoy_Models;
 using Domovoy_Models.ViewModels;
 using Domovoy_Utility;
 using Domovoy_Utility.BrainTree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.Linq;
 
 namespace Domovoy.Controllers
 {
+    [Authorize(Roles = WC.AdminRole)]
     public class OrderController : Controller
     {
         
