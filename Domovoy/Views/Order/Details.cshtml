@@ -151,19 +151,30 @@
 
 
                             <br />
-
-                            <input type="submit" value="Start Processing" class="btn btn-info form-control" />
-
-                            <input type="submit" value="Ship Order" class="btn btn-primary form-control" />
-
-
-                            <div class="pt-2">
-                                <button type="submit"
+                            @if (Model.orderHeader.OrderStatus == Domovoy_Utility.WC.StatusApproved)
+                            {
+                                <input type="submit" value="Start Processing"
+                                   formmethod="post" asp-action="StartProcessing" 
+                                   class="btn btn-info form-control" />
+                            }
+                            @if (Model.orderHeader.OrderStatus == Domovoy_Utility.WC.StatusProcessing)
+                            {
+                                <input type="submit" value="Ship Order"
+                                   formmethod="post" asp-action="ShipOrder"
+                                   class="btn btn-primary form-control" />
+                            }
+                            @if (Model.orderHeader.OrderStatus != Domovoy_Utility.WC.StatusRefunded
+                            && Model.orderHeader.OrderStatus != Domovoy_Utility.WC.StatusCancelled)
+                            {
+                                <div class="pt-2">
+                                    <button type="submit"
                                         class="btn btn-danger form-control"
+                                        asp-action="CancelOrder"
                                         formmethod="post">
-                                    Cancel Order
-                                </button>
-                            </div>
+                                        Cancel Order
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
