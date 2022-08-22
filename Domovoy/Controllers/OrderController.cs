@@ -77,6 +77,7 @@ namespace Domovoy.Controllers
             OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.orderHeader.Id);
             orderHeader.OrderStatus = WC.StatusProcessing;
             _orderHRepo.Save();
+            TempData[WC.Success] = "Заказ принят в обработку";
             return RedirectToAction(nameof(Index));
         }
 
@@ -87,6 +88,7 @@ namespace Domovoy.Controllers
             orderHeader.OrderStatus = WC.StatusShipped;
             orderHeader.ShippingDate = System.DateTime.Now;
             _orderHRepo.Save();
+            TempData[WC.Success] = "Заказ успешно отправлен";
             return RedirectToAction(nameof(Index));
         }
 
@@ -108,7 +110,25 @@ namespace Domovoy.Controllers
             }
             orderHeader.OrderStatus = WC.StatusRefunded;
             _orderHRepo.Save();
+            TempData[WC.Success] = "Заказ успешно отменен";
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateOrderDetails()
+        {
+            OrderHeader orderHeaderFromDb = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.orderHeader.Id);
+            orderHeaderFromDb.FullName = OrderVM.orderHeader.FullName;
+            orderHeaderFromDb.PhoneNumber = OrderVM.orderHeader.PhoneNumber;
+            orderHeaderFromDb.StreetAddress = OrderVM.orderHeader.StreetAddress;
+            orderHeaderFromDb.City = OrderVM.orderHeader.City;
+            orderHeaderFromDb.State = OrderVM.orderHeader.State;
+            orderHeaderFromDb.PostalCode = OrderVM.orderHeader.PostalCode;
+            orderHeaderFromDb.Email = OrderVM.orderHeader.Email;
+
+            _orderHRepo.Save();
+            TempData[WC.Success] = "Детали заказа успешно обновлены";
+            return RedirectToAction("Details", "Order", new {id= orderHeaderFromDb.Id});
         }
     }
 }
