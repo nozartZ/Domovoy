@@ -1,4 +1,5 @@
 ﻿using Domovoy_DataAccess.Repository.IRepository;
+using Domovoy_Models;
 using Domovoy_Models.ViewModels;
 using Domovoy_Utility;
 using Domovoy_Utility.BrainTree;
@@ -67,6 +68,34 @@ namespace Domovoy.Controllers
                 orderDetail = _orderDRepo.GetAll(o => o.OrderHeaderId == id, includeProperties: "Product")
             };
             return View(OrderVM); 
+        }
+
+        [HttpPost]
+        public IActionResult StartProcessing()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.orderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusProcessing;
+            _orderHRepo.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult ShipOrder()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.orderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusShipped;
+            orderHeader.ShippingDate = System.DateTime.Now;
+            _orderHRepo.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult CancelOrder()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.orderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusProcessing;
+            _orderHRepo.Save();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
