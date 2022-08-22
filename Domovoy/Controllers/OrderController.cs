@@ -16,7 +16,9 @@ namespace Domovoy.Controllers
         private readonly IOrderDetailRepository _orderDRepo;
         private readonly IBrainTreeGate _brain;
 
-        
+        [BindProperty]
+        public OrderVM OrderVM { get; set; }
+
         public ProductUserVM ProductUserVM { get; set; }
 
         public OrderController(IOrderHeaderRepository orderHRepo, IOrderDetailRepository orderDRepo, IBrainTreeGate brain)
@@ -55,6 +57,16 @@ namespace Domovoy.Controllers
             }
 
             return View(orderListVM);
+        }
+        
+        public IActionResult Details(int id)
+        {
+            OrderVM = new OrderVM()
+            {
+                orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == id),
+                orderDetail = _orderDRepo.GetAll(o => o.OrderHeaderId == id, includeProperties: "Product")
+            };
+            return View(OrderVM); 
         }
     }
 }

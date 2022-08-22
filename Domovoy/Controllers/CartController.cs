@@ -63,13 +63,13 @@ namespace Domovoy.Controllers
 
             }
 
-            List <int> prodInCart = shoppingCartList.Select(i=>i.ProductId).ToList();
+            List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
             IEnumerable<Product> prodListTemp = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
             IList<Product> prodList = new List<Product>();
 
             foreach (var cartObj in shoppingCartList)
             {
-                Product prodTemp = prodListTemp.FirstOrDefault(u=>u.Id == cartObj.ProductId);
+                Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == cartObj.ProductId);
                 prodTemp.TempSqFt = cartObj.SqFt;
                 prodList.Add(prodTemp);
             }
@@ -99,10 +99,10 @@ namespace Domovoy.Controllers
 
             if(User.IsInRole(WC.AdminRole))
             {
-                if(HttpContext.Session.Get<int>(WC.SessionInquiryId)!=0)
+                if(HttpContext.Session.Get<int>(WC.SessionInquiryId)!= 0)
                 {
                     //cart has been loaded using inquiry
-                    InquiryHeader inquiryHeader = _inqHRepo.FirstOrDefault(u => u.Id == (HttpContext.Session.Get<int>(WC.SessionInquiryId)));
+                    InquiryHeader inquiryHeader = _inqHRepo.FirstOrDefault(u => u.Id == HttpContext.Session.Get<int>(WC.SessionInquiryId));
                     applicationUser = new ApplicationUser()
                     {
                         Email = inquiryHeader.Email,
@@ -125,7 +125,8 @@ namespace Domovoy.Controllers
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
                 //var userId = User.FindFirstValue(ClaimTypes.Name);
-                applicationUser = _userRepo.FirstOrDefault(u=>u.Id == claim.Value);
+
+                applicationUser = _userRepo.FirstOrDefault(u => u.Id == claim.Value);
             };
 
             
@@ -161,7 +162,7 @@ namespace Domovoy.Controllers
         public async Task<IActionResult> SummaryPost(IFormCollection collection, ProductUserVM ProductUserVM)
         {
 
-            var claimsIdentity= (ClaimsIdentity)User.Identity;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             if(User.IsInRole(WC.AdminRole))
@@ -250,7 +251,7 @@ namespace Domovoy.Controllers
                 StringBuilder productListSB = new StringBuilder();
                 foreach (var prod in ProductUserVM.ProductList)
                 {
-                    productListSB.Append($" - Name: {prod.Name} <span style = 'font-size=14px;'> (ID: {prod.Id})</span><br />");
+                    productListSB.Append($" - Name: {prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />");
                 }
                 string messageBody = string.Format(HtmlBody,
                     ProductUserVM.ApplicationUser.FullName,
@@ -288,24 +289,24 @@ namespace Domovoy.Controllers
 
         public IActionResult InquiryConfirmation (int id=0)
         {
-            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u=>u.Id == id);
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == id);
             HttpContext.Session.Clear();
             return View(orderHeader);
         }
 
         public IActionResult Remove(int id)
         {
-            List<ShoppingCart> shoppingCartsList = new List<ShoppingCart>();
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
             if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
                 && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Count() > 0)
             {
                 //session exists
-                shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
 
             }
 
-            shoppingCartsList.Remove(shoppingCartsList.FirstOrDefault(u => u.ProductId == id));
-            HttpContext.Session.Set(WC.SessionCart, shoppingCartsList);
+            shoppingCartList.Remove(shoppingCartList.FirstOrDefault(u => u.ProductId == id));
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
             TempData[WC.Success] = "Товар удален из корзины";
             return RedirectToAction(nameof(Index));
         }
