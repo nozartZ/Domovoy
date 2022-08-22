@@ -1,4 +1,5 @@
-﻿using Domovoy_DataAccess.Repository.IRepository;
+﻿using Braintree;
+using Domovoy_DataAccess.Repository.IRepository;
 using Domovoy_Models;
 using Domovoy_Models.ViewModels;
 using Domovoy_Utility;
@@ -93,7 +94,19 @@ namespace Domovoy.Controllers
         public IActionResult CancelOrder()
         {
             OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.orderHeader.Id);
-            orderHeader.OrderStatus = WC.StatusProcessing;
+            var gateway = _brain.GetGateway();
+            Transaction transaction = gateway.Transaction.Find(orderHeader.TransactionId);
+            if(transaction.Status == TransactionStatus.AUTHORIZED || transaction.Status == TransactionStatus.SUBMITTED_FOR_SETTLEMENT)
+            {
+                //no refund
+                Result<Transaction> resultVoid = gateway.Transaction.Void(orderHeader.TransactionId);
+            }
+            else
+            {
+                //refund
+                Result<Transaction> resultRefund = gateway.Transaction.Refund(orderHeader.TransactionId);
+            }
+            orderHeader.OrderStatus = WC.StatusRefunded;
             _orderHRepo.Save();
             return RedirectToAction(nameof(Index));
         }
