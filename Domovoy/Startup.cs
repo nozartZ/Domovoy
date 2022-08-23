@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Domovoy_DataAccess.Repository.IRepository;
 using Domovoy_DataAccess.Repository;
 using Domovoy_Utility.BrainTree;
+using Domovoy_DataAccess.Initializer;
 
 namespace Domovoy
 {
@@ -57,7 +58,7 @@ namespace Domovoy
             services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
-
+            services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddAuthentication().AddFacebook(Options =>
             {
                 Options.AppId = "530153088882711";
@@ -68,7 +69,7 @@ namespace Domovoy
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -86,6 +87,7 @@ namespace Domovoy
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            dbInitializer.Initialize();
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {
