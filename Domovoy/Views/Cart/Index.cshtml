@@ -14,11 +14,11 @@
                     <div class="card-header bg-dark text-light ml-0 row container">
                         <div class="col-6">
                             <i class="fa fa-shopping-cart"></i> &nbsp;
-                            Shopping Cart
+                            Корзина
                         </div>
                         <div class="col-6 text-right">
-                            <a asp-action="Clear" class="btn btn-outline-warning btn-sm">Clear Cart</a>
-                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+                            <a asp-action="Clear" class="btn btn-outline-warning btn-sm">Очистить корзину</a>
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-info btn-sm">Продолжить покупки</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -29,25 +29,25 @@
                                 @if (User.IsInRole(WC.AdminRole))
                                 {
                                     <div class="col-12 col-lg-3">
-                                    Product Details
+                                    Детали продукта
                                     </div>
                                 }
                                 else
                                 {
                                 <div class="col-12 col-lg-7">
-                                    Product Details
+                                    Детали продукта
                                 </div>
                                 }
                                 <div class="col-12 col-lg-2">
-                                    Price per sqft
+                                        Цена за м2
                                 </div>
                                 @if (User.IsInRole(WC.AdminRole))
                                 {
                                     <div class="col-6 col-lg-2">
-                                    Sqft
+                                    м2
                                     </div>
                                     <div class="col-6 col-lg-2">
-                                    Total Price
+                                    Сумма
                                     </div>
                                 }
                                 <div class="col-6 col-sm-4 col-lg-1">
@@ -110,7 +110,7 @@
                         {
                             <div class="row">
                                 <div class="col-12 text-right pr-4" style="color:#821f3d">
-                                    Order Total : @(orderTotal.ToString("c", CultureInfo.CreateSpecificCulture("be-BY")))
+                                    Сумма заказа: @(orderTotal.ToString("c", CultureInfo.CreateSpecificCulture("be-BY")))
                                 </div>
                             </div>
                         }
@@ -120,13 +120,13 @@
                             <div class="col-6 col-md-3 offset-md-6">
                                 @if(User.IsInRole(WC.AdminRole))
                                 {
-                                    <input type="submit" asp-action="UpdateCart" formmethod="post" name="Update" value="Update Cart" 
+                                    <input type="submit" asp-action="UpdateCart" formmethod="post" name="Update" value="Обновить корзину" 
                                     class="btn btn-info form-control" />
                                 }
                             </div>
                             <div class="col-6 col-md-3">
                                 <button type="submit" class="btn btn-success form-control ">
-                                    <span>Continue</span>
+                                    <span>Продолжить</span>
                                 </button>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
 }
 else
 {
-    <p>Please add items to cart.</p>
+    <p>Пожалуйста, добавьте товар в корзину.</p>
 }
 
 @section Scripts{

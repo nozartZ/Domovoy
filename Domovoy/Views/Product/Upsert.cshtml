@@ -2,13 +2,13 @@
 @using Domovoy_Utility
 
 @{
-    var title = "Create Product";
+    var title = "Создание нового Товара";
 }
 
 <form method="post" enctype="multipart/form-data">
     @if (Model.Product.Id!=0)
     {
-        title = "Edit Product";
+        title = "Редактирование Товара";
         <input asp-for="Product.Id" hidden />
     }
     <div class= "border p-3 bg-white">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-8">
                         <select asp-for = "Product.CategoryId" asp-items="@Model.CategorySelectList" class="form-select">
-                            <option disabled selected>--select Category--</option>
+                            <option disabled selected>--выбрать Категорию--</option>
                         </select>
                         <span asp-validation-for= "Product.CategoryId" class="text-danger"></span>
                     </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-8">
                         <select asp-for = "Product.ApplicationTypeId" asp-items="@Model.ApplicationTypeSelectList" class="form-select">
-                            <option disabled selected>--select Application Type--</option>
+                            <option disabled selected>--выбрать Тип--</option>
                         </select>
                         <span asp-validation-for= "Product.ApplicationTypeId" class="text-danger"></span>
                     </div>
@@ -99,12 +99,12 @@
                             @if(Model.Product.Id!=0)
                             {
                                 //update
-                                <input type="submit" class="btn btn-info w-100" value="Update" />
+                                <input type="submit" class="btn btn-info w-100" value="Обновить" />
                             }
                             else
                             {
                                 //create
-                                <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Create" />
+                                <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Создать" />
                             }
                         </div>
                         <div class="col">

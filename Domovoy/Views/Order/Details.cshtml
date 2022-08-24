@@ -7,10 +7,10 @@
         <div class="card">
             <div class="card-header bg-dark text-light ml-0 row container">
                 <div class="col-12 d-none d-md-block col-md-6 pb-1">
-                    <i class="fas fa-shopping-cart"></i> &nbsp; Order Summary
+                    <i class="fas fa-shopping-cart"></i> &nbsp; Информация о заказе
                 </div>
                 <div class="col-12 col-md-4 offset-md-2 text-right">
-                    <a asp-controller="Order" asp-action="Index" class="btn btn-outline-info form-control btn-sm">Back to Orders</a>
+                    <a asp-controller="Order" asp-action="Index" class="btn btn-outline-info form-control btn-sm">Вернуться к списку заказов</a>
                 </div>
             </div>
             <div class="card-body pb-0">
@@ -19,11 +19,11 @@
                         <div class="col-12 col-lg-6 pb-4">
                             <div class="row">
                                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-info">PickUp Details:</span>
+                                    <span class="text-info">Детали заказа:</span>
                                 </h4>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">Name</div>
+                                <div class="col-3">Имя</div>
                                 <div class="col-9">
 
                                     <input asp-for="orderHeader.FullName" type="text" class="form-control" />
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">Phone</div>
+                                <div class="col-3">Телефон</div>
                                 <div class="col-9">
 
                                     <input asp-for="orderHeader.PhoneNumber" type="text" class="form-control" />
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">Address</div>
+                                <div class="col-3">Адрес</div>
                                 <div class="col-9">
 
                                     <input asp-for="orderHeader.StreetAddress" type="text" class="form-control" />
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">City</div>
+                                <div class="col-3">Город</div>
                                 <div class="col-9">
 
                                     <input asp-for="orderHeader.City" type="text" class="form-control" />
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">State</div>
+                                <div class="col-3">Регион</div>
                                 <div class="col-9">
 
                                     <input asp-for="orderHeader.State" type="text" class="form-control" />
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">Zip Code</div>
+                                <div class="col-3">Индекс</div>
                                 <div class="col-9">
 
                                     <input asp-for="orderHeader.PostalCode" type="text" class="form-control" />
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">Order Date</div>
+                                <div class="col-3">Дата заказа</div>
                                 <div class="col-9">
 
                                     <input value="@Model.orderHeader.OrderDate.ToShortDateString()" type="text" class="form-control" readonly />
@@ -89,27 +89,27 @@
                             </div>
 
                             <div class="row my-1">
-                                <div class="col-3">Shipping Date</div>
+                                <div class="col-3">Дата отправки</div>
                                 <div class="col-9">
                                     <input value="@Model.orderHeader.ShippingDate.ToShortDateString()"  id="shippingDate" type="text" readonly class="form-control" />
                                 </div>
                             </div>
 
                             <div class="row my-1">
-                                <div class="col-3">Transaction ID</div>
+                                <div class="col-3">ID транзакции</div>
                                 <div class="col-9">
                                     <input asp-for="orderHeader.TransactionId" type="text" readonly class="form-control" />
                                 </div>
                             </div>
                             <div class="row my-1">
-                                <div class="col-3">Order Status</div>
+                                <div class="col-3">Статус заказа</div>
                                 <div class="col-9">
                                     <input asp-for="orderHeader.OrderStatus" type="text" readonly class="form-control" />
                                 </div>
                             </div>
                             <div class="row my-1">
                                 <div class="col-9 offset-3">
-                                    <input type="submit" value="Update Order Details" class="btn btn-warning form-control"
+                                    <input type="submit" value="Обновить детали заказа" class="btn btn-warning form-control"
                                            asp-action="UpdateOrderDetails" formmethod="post" />
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="col-12 col-lg-5 offset-lg-1">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-info">Order Summary</span>
+                                <span class="text-info">Содержимое заказа</span>
                             </h4>
                             <ul class="list-group mb-3">
                                 @foreach(var detail in Model.orderDetail)
@@ -127,8 +127,8 @@
                                     <div class="row container">
                                         <div class="col-8">
                                             <h6 class="my-0 text-info">@detail.Product.Name</h6>
-                                            <small class="text-muted">Price : @detail.PricePerSqFt</small><br />
-                                            <small class="text-muted">Quantity : @detail.Sqft</small>
+                                            <small class="text-muted">Цена : @detail.PricePerSqFt</small><br />
+                                            <small class="text-muted">Кол-во : @detail.Sqft</small>
                                         </div>
                                         <div class="col-4">
                                             <p class="text-success">BYN @(detail.PricePerSqFt * detail.Sqft)</p>
@@ -139,7 +139,7 @@
                                 <li class="list-group-item bg-info">
                                     <div class="row container">
                                         <div class="col-6">
-                                            <h5 class="text-white">TOTAL </h5>
+                                            <h5 class="text-white">ИТОГ </h5>
                                         </div>
                                         <div class="col-6 text-right">
                                             <h5 class="text-white">BYN @(Model.orderHeader.FinalOrderTotal)</h5>
@@ -153,13 +153,13 @@
                             <br />
                             @if (Model.orderHeader.OrderStatus == Domovoy_Utility.WC.StatusApproved)
                             {
-                                <input type="submit" value="Start Processing"
+                                <input type="submit" value="Взять в работу"
                                    formmethod="post" asp-action="StartProcessing" 
                                    class="btn btn-info form-control" />
                             }
                             @if (Model.orderHeader.OrderStatus == Domovoy_Utility.WC.StatusProcessing)
                             {
-                                <input type="submit" value="Ship Order"
+                                <input type="submit" value="Доставка"
                                    formmethod="post" asp-action="ShipOrder"
                                    class="btn btn-primary form-control" />
                             }
@@ -171,7 +171,7 @@
                                         class="btn btn-danger form-control"
                                         asp-action="CancelOrder"
                                         formmethod="post">
-                                        Cancel Order
+                                        Отменить заказ
                                     </button>
                                 </div>
                             }

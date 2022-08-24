@@ -1,7 +1,7 @@
 ﻿@page
 @model LoginModel
 <div id="logreg-forms">
-    <h1 class="h3 mb-3 font-weight-normal text-info pt-4" style="text-align:center;">Sign In</h1>
+    <h1 class="h3 mb-3 font-weight-normal text-info pt-4" style="text-align:center;">Вход</h1>
 @if ((Model.ExternalLogins?.Count ?? 0) == 0)
 {
 <div>
@@ -38,16 +38,16 @@ else
 <form id="account" method="post">
         @if ((Model.ExternalLogins?.Count > 0))
         {
-            <p style="text-align:center">OR</p>
+            <p style="text-align:center">ИЛИ</p>
         }
     
         <input asp-for="Input.Email" placeholder="Email..." type="email" class="mb-1 form-control" />
-        <input asp-for="Input.Password" placeholder="Password..." type="password" class="form-control" />
-        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i> Log in</button>
-        <a id="forgot-password" asp-page="./ForgotPassword" class="pb-2 text-info">Forgot your password?</a>
+        <input asp-for="Input.Password" placeholder="Пароль..." type="password" class="form-control" />
+        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i> Войти</button>
+        <a id="forgot-password" asp-page="./ForgotPassword" class="pb-2 text-info">Забыли пароль?</a>
         <div asp-validation-summary="All" class="text-danger"></div>
 
-        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-info text-white">Register as a new user</a>
+        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-info text-white">Зарегистрироваться</a>
 
     
 </form>

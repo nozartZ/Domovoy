@@ -55,7 +55,7 @@ namespace Domovoy.Controllers
             {
                 orderListVM.OrderHList = orderListVM.OrderHList.Where(u => u.PhoneNumber.ToLower().Contains(searchPhone.ToLower()));
             }
-            if (!string.IsNullOrEmpty(Status) && Status!= "--Order Status--")
+            if (!string.IsNullOrEmpty(Status) && Status!= "--Статус заказа--")
             {
                 orderListVM.OrderHList = orderListVM.OrderHList.Where(u => u.OrderStatus.ToLower().Contains(Status.ToLower()));
             }

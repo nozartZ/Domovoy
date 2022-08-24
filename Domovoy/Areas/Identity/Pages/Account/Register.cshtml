@@ -11,16 +11,16 @@
                         <h3 class="col-12 text-success text-center py-4">
                             @if (User.IsInRole(WC.AdminRole))
                             {
-                                <strong>Register an Admin Account</strong>
+                                <strong>Регистрация Администратора</strong>
                             }
                             else
                             {
-                                <strong>Register</strong>
+                                <strong>Регистрация</strong>
                             }
                         </h3>
                         <hr />
                         <div class="py-2">
-                            <input asp-for="Input.FullName" placeholder="Name" class="form-control" />
+                            <input asp-for="Input.FullName" placeholder="Имя" class="form-control" />
                             <span asp-validation-for="Input.FullName" class="text-danger"></span>
                         </div>
                         <div class="py-2">
@@ -33,17 +33,17 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">+375</span>
                                 </div>
-                                <input asp-for="Input.PhoneNumber" placeholder="Phone Number" type="text" class="form-control" />
+                                <input asp-for="Input.PhoneNumber" placeholder="Телефон" type="text" class="form-control" />
                             </div>
                             <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                         </div>
 
                         <div class="form-row row py-2">
                             <div class="col-6">
-                                <input asp-for="Input.Password" placeholder="Password" type="password" class="form-control" />
+                                <input asp-for="Input.Password" placeholder="Пароль" type="password" class="form-control" />
                             </div>
                             <div class="col-6">
-                                <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" type="password" class="form-control" />
+                                <input asp-for="Input.ConfirmPassword" placeholder="Повторите пароль" type="password" class="form-control" />
 
                             </div>
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
@@ -52,11 +52,11 @@
                         <div class="py-2">
                             @if (User.IsInRole(WC.AdminRole))
                             {
-                                <button type="submit" class="btn btn-warning form-control">Register Admin User</button>
+                                <button type="submit" class="btn btn-warning form-control">Регистрация Администратора</button>
                             }
                             else
                             {
-                                <button type="submit" class="btn btn-primary form-control">Register</button>
+                                <button type="submit" class="btn btn-primary form-control">Зарегистрироваться</button>
                             }
                         </div>
                     </form>
