@@ -224,11 +224,6 @@ namespace Domovoy.Controllers
                     orderHeader.TransactionId = result.Target.Id;
                     orderHeader.OrderStatus = WC.StatusApproved;
                 }
-                else if (result.Target.ProcessorResponseText == "Pending")
-                {
-                    orderHeader.TransactionId = result.Target.Id;
-                    orderHeader.OrderStatus = WC.StatusPending;
-                }
                 else
                 {
                     orderHeader.OrderStatus = WC.StatusCancelled;

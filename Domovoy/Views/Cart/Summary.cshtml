@@ -239,9 +239,9 @@ else{
 }
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
-    <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
         var client_token = "@ViewBag.ClientToken";
         var form = document.querySelector('#payment-form');
 
@@ -260,7 +260,9 @@ else{
                 });
             });
         });
+    </script>
 
+    <script>
         function validateInput() {
 
             var app_name = document.getElementById("ApplicationUser_FullName").value;
