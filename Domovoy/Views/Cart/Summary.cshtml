@@ -243,7 +243,7 @@ else{
 
     <script type="text/javascript">
         var client_token = "@ViewBag.ClientToken";
-        var form = document.querySelector('#payment-form');
+        var form = document.getElementById('payment-form');
 
         braintree.dropin.create({
             authorization: client_token,
